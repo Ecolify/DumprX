@@ -1,6 +1,7 @@
 #!/bin/bash
 
 PROJECT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+RANDOM=$(date +%s)
 
 # Sanitize And Generate Folders
 OUTDIR=/tmp/out			# Contains Final Extracted Files
@@ -97,9 +98,9 @@ is_ab=$(grep -m1 -oP "(?<=^ro.build.ab_update=).*" -hs {system,system/system,ven
 treble_support=$(grep -m1 -oP "(?<=^ro.treble.enabled=).*" -hs {system,system/system}/build*.prop)
 [[ -z "${treble_support}" ]] && treble_support="false"
 otaver=$(grep -m1 -oP "(?<=^ro.build.version.ota=).*" -hs {vendor/euclid/product,oppo_product,system,system/system}/build*.prop | head -1)
-[[ ! -z "${otaver}" && -z "${fingerprint}" ]] && branch=$(echo "${otaver}" | tr ' ' '-')
+[[ ! -z "${otaver}" && -z "${fingerprint}" ]] && branch=$(echo "${otaver}-${RANDOM}" | tr ' ' '-')
 [[ -z "${otaver}" ]] && otaver=$(grep -m1 -oP "(?<=^ro.build.fota.version=).*" -hs {system,system/system}/build*.prop | head -1)
-[[ -z "${branch}" ]] && branch=$(echo "${description}" | tr ' ' '-')
+[[ -z "${branch}" ]] && branch=$(echo "${description}-${RANDOM}" | tr ' ' '-')
 
 if false; then
 # Transsions vars
