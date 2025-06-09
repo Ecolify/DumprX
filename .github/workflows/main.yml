@@ -6,9 +6,9 @@ on:
       ROM_LINK:
         description: "Direct Link of ROM/Firmware"
         required: true
-        default: "'https://android.googleapis.com/packages/ota-api/package/bb874810656ab780de64da121f1d23ea38c80bce.zip'"
+        default: "https://android.googleapis.com/packages/ota-api/package/bb874810656ab780de64da121f1d23ea38c80bce.zip"
 env:
-  ROM_LINK: "'${{ github.event.inputs.ROM_LINK }}'"
+  ROM_LINK: ${{ github.event.inputs.ROM_LINK }}
   TG_TOKEN: ${{ secrets.TG_TOKEN }}
   GIT_ORG: "AndroidFW"
   CHAT_ID: ${{ secrets.CHAT_ID }}
