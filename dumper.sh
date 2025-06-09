@@ -1077,7 +1077,7 @@ find "$OUTDIR" -type f -printf '%P\n' | sort | grep -v ".git/" > "$OUTDIR"/all_f
 if [[ "$treble_support" = true ]]; then
         aospdtout="lineage-device-tree"
         mkdir -p $aospdtout
-        uvx --from git+https://github.com/Ecolify/aospdtgen@master aospdtgen $OUTDIR -o $aospdtout
+        uvx --from git+https://github.com/EduardoA3677/aospdtgen@master aospdtgen $OUTDIR -o $aospdtout
 
         # Remove all .git directories from aospdtout
         rm -rf $(find $aospdtout -type d -name ".git")
