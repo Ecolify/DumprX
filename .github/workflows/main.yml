@@ -61,4 +61,4 @@ jobs:
           eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/id_rsa
           ssh -T git@gitlab.com || true
-          bash ./dumper.sh "${ROM_LINK}" || exit 1
+          bash ./dumper.sh '${ROM_LINK}' || exit 1
