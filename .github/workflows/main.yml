@@ -1,0 +1,45 @@
+name: CI (Alt)
+
+on:
+  workflow_dispatch:
+    inputs:
+      ROM_LINK:
+        description: "Direct Link of ROM/Firmware"
+        required: true
+        default: 'https://android.googleapis.com/packages/ota-api/package/bb874810656ab780de64da121f1d23ea38c80bce.zip'
+
+env:
+  ROM_LINK: ${{ github.event.inputs.ROM_LINK }}
+  TG_TOKEN: ${{ secrets.TG_TOKEN }}
+  CHAT_ID: ${{ secrets.CHAT_ID }}
+  GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+
+jobs:
+  dump:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Maximize build space
+        uses: easimon/maximize-build-space@master
+        with:
+          root-reserve-mb: 20480
+          temp-reserve-mb: 4096
+          swap-size-mb: 8192
+          remove-dotnet: "true"
+          remove-android: "false"
+          remove-haskell: "true"
+          remove-codeql: "true"
+          
+      - name: Dump Firmware
+        run: |
+          set -ex
+          export TERM=xterm
+          git clone -q --depth=1 https://github.com/EduardoA3677/DumprX.git rom
+          cd rom
+          bash ./setup.sh || exit 1
+          sudo apt-get update
+          sudo apt-get install neofetch cpio lz4 gzip xz-utils lzma zstd curl wget file lzop coreutils -qy
+          echo "$GITLAB_TOKEN" > .gitlab_token
+          echo "$TG_TOKEN" > .tg_token
+          echo "$CHAT_ID" > .tg_chat
+          bash ./dumper.sh "${ROM_LINK}" || exit 1
