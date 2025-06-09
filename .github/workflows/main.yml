@@ -13,7 +13,7 @@ env:
   TG_TOKEN: ${{ secrets.TG_TOKEN }}
   GIT_ORG: "EduardoA3677"
   CHAT_ID: ${{ secrets.CHAT_ID }}
-  SSH_KEY: ${{ SECRETOS.SSH_KEY }}
+  SSH_KEY: ${{ secrets.SSH_KEY }}
   GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
 
 jobs:
