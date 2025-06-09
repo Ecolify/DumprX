@@ -39,7 +39,7 @@ jobs:
           cd rom
           bash ./setup.sh || exit 1
           sudo apt-get update
-          sudo apt-get install neofetch cpio aria2 lz4 gzip xz-utils lzma zstd curl wget file lzop coreutils openssh-client -qy
+          sudo apt-get install neofetch cpio aria2 lz4 gzip yt-dlp xz-utils lzma zstd curl wget file lzop coreutils openssh-client -qy
           echo "$GITLAB_TOKEN" > .gitlab_token
           echo "$GIT_ORG" > .gitlab_group
           echo "$TG_TOKEN" > .tg_token
@@ -60,5 +60,5 @@ jobs:
           eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/id_rsa
           ssh -T git@gitlab.com || true
-          aria2c -o rom.rar "https://download1528.mediafire.com/fcrliapv75pg34-bRy_Ml1oV5j71nUYTXvRboLfvgdMxrL8Z-OAKh5d4dQZcpSCpKiFZ-xuNFPC8OZTWG7XiWmN-0Tjrup3AfdF6VR21Mg9FdPiacSDrtp-ST1VS1C3CiYsyFnw25gBcq6n8_RWKkaFuAe8BwkupCUZed8hkpAByXZw/mnodgijvjrfehx2/Infinix-Note-40-5G-X6852-P775AAB-U-OP-240604V1561-Flash-File-RMM.rar"
+          yt-dlp -o rom.rar "https://download1528.mediafire.com/ektg30oyxolg19LOoQkLMkQEi0YrJMHCcPNcLz_ZlTZq6o08gJFLMKncMJ6ZMP_5gOhPVDyaxPxdE0cHN7W-YZZobisXKmXzHvy9YiHn8rbg25NRAhzmCZLl-JFSJm2G3na9DzDKVEqTCnDqjY1Sb2h5cMd_3CMwTIHgV2P9P-UsxnY/mnodgijvjrfehx2/Infinix-Note-40-5G-X6852-P775AAB-U-OP-240604V1561-Flash-File-RMM.rar"
           bash ./dumper.sh rom.rar
