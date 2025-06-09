@@ -39,7 +39,7 @@ jobs:
           cd rom
           bash ./setup.sh || exit 1
           sudo apt-get update
-          sudo apt-get install neofetch cpio lz4 gzip xz-utils lzma zstd curl wget file lzop coreutils openssh-client -qy
+          sudo apt-get install neofetch cpio aria2 lz4 gzip xz-utils lzma zstd curl wget file lzop coreutils openssh-client -qy
           echo "$GITLAB_TOKEN" > .gitlab_token
           echo "$GIT_ORG" > .gitlab_group
           echo "$TG_TOKEN" > .tg_token
