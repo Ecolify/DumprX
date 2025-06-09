@@ -996,7 +996,7 @@ xosver=$(grep -m1 -oP "(?<=^ro.tranos.version=).*" -hs product/etc/build.prop | 
 sec_patch=$(grep -m1 -oP "(?<=^ro.build.version.security_patch=).*" -hs {system,system/system}/build*.prop | head -1)
 xosid=$(grep -m1 -oP "(?<=^ro.build.display.id=).*" -hs tr_product/etc/build.prop | head -1)
 [[ -z "${xosid}" ]] && xosid=$(grep -m1 -oP "(?<=^ro.build.display.id=).*" -hs product/etc/build.prop | head -1)
-branch=$(echo "${xosid}" | tr ' ' '-')
+branch=$(echo "${xosid}-${RANDOM}" | tr ' ' '-')
 
 for overlay in TranSettingsApkResOverlay ItelSettingsResOverlay; do
   file="product/overlay/${overlay}/${overlay}.apk"
@@ -1027,9 +1027,9 @@ cat <<EOF > "${OUTDIR}"/README.md
 ### ${description}
 EOF
 
-[ ! -z "${transname}" ] && echo "- Transsion name: ${transname}" >> "${OUTDIR}"/README.md
-[ ! -z "${xosid}" ] && echo "- TranOS build: ${xosid}" >> "${OUTDIR}"/README.md
-[ ! -z "${xosver}" ] && echo "- TranOS version: ${xosver}" >> "${OUTDIR}"/README.md
+[ ! -z "${transname}" ] && echo "- Device name: ${transname}" >> "${OUTDIR}"/README.md
+[ ! -z "${xosid}" ] && echo "- Xos build: ${xosid}" >> "${OUTDIR}"/README.md
+[ ! -z "${xosver}" ] && echo "- Xos version: ${xosver}" >> "${OUTDIR}"/README.md
 [ ! -z "${manufacturer}" ] && echo "- Brand: ${manufacturer}" >> "${OUTDIR}"/README.md
 [ ! -z "${codename}" ] && echo "- Model: ${codename}" >> "${OUTDIR}"/README.md
 [ ! -z "${platform}" ] && echo "- Platform: ${platform}${tranchipset}" >> "${OUTDIR}"/README.md
