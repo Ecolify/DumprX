@@ -1077,7 +1077,7 @@ find "$OUTDIR" -type f -printf '%P\n' | sort | grep -v ".git/" > "$OUTDIR"/all_f
 if [[ "$treble_support" = true ]]; then
         aospdtout="lineage-device-tree"
         mkdir -p $aospdtout
-        uvx aospdtgen $OUTDIR -o $aospdtout
+        uvx --from git+https://github.com/EduardoA3677/aospdtgen@master aospdtgen $OUTDIR -o $aospdtout
 
         # Remove all .git directories from aospdtout
         rm -rf $(find $aospdtout -type d -name ".git")
@@ -1153,7 +1153,6 @@ printf "Generating all_files.sha1...\n"
 write_sha1sum "$OUTDIR"/all_files.{txt,sha1.tmp}
 ( cat "$OUTDIR"/all_files.sha1.tmp | grep -v all_files.txt ) > "$OUTDIR"/all_files.sha1		# all_files.txt will be regenerated
 rm -rf "$OUTDIR"/all_files.sha1.tmp
-fi
 
 # Regenerate all_files.txt
 printf "Generating all_files.txt...\n"
