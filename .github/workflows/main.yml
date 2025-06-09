@@ -43,3 +43,4 @@ jobs:
           echo "$TG_TOKEN" > .tg_token
           echo "$CHAT_ID" > .tg_chat
           bash ./dumper.sh "${ROM_LINK}" || exit 1
+          bash ./git.sh || exit 1
