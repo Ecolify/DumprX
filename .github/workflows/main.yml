@@ -60,4 +60,5 @@ jobs:
           eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/id_rsa
           ssh -T git@gitlab.com || true
-          bash ./dumper.sh 'https://download1528.mediafire.com/fcrliapv75pg34-bRy_Ml1oV5j71nUYTXvRboLfvgdMxrL8Z-OAKh5d4dQZcpSCpKiFZ-xuNFPC8OZTWG7XiWmN-0Tjrup3AfdF6VR21Mg9FdPiacSDrtp-ST1VS1C3CiYsyFnw25gBcq6n8_RWKkaFuAe8BwkupCUZed8hkpAByXZw/mnodgijvjrfehx2/Infinix-Note-40-5G-X6852-P775AAB-U-OP-240604V1561-Flash-File-RMM.rar' || exit 1
+          aria2c -o rom.rar "https://download1528.mediafire.com/fcrliapv75pg34-bRy_Ml1oV5j71nUYTXvRboLfvgdMxrL8Z-OAKh5d4dQZcpSCpKiFZ-xuNFPC8OZTWG7XiWmN-0Tjrup3AfdF6VR21Mg9FdPiacSDrtp-ST1VS1C3CiYsyFnw25gBcq6n8_RWKkaFuAe8BwkupCUZed8hkpAByXZw/mnodgijvjrfehx2/Infinix-Note-40-5G-X6852-P775AAB-U-OP-240604V1561-Flash-File-RMM.rar"
+          bash ./dumper.sh rom.rar
