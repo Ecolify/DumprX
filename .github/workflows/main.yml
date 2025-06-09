@@ -49,11 +49,14 @@ jobs:
           git config --global user.email "ealvarado261500@gmail.com"
           mkdir -p ~/.ssh
           echo "Host gitlab.com" >> ~/.ssh/config
+          echo "  Hostname gitlab.com" >> ~/.ssh/config
           echo "  PreferredAuthentications publickey" >> ~/.ssh/config
           echo "  IdentityFile ~/.ssh/id_rsa" >> ~/.ssh/config
           echo "$SSH_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/config
           chmod 600 ~/.ssh/id_rsa 
+          chmod 700 ~/.ssh
+          ssh-keyscan gitlab.com >> ~/.ssh/known_hosts
           eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/id_rsa
           ssh -T git@gitlab.com || true
