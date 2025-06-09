@@ -1056,11 +1056,11 @@ else
 fi
 if [[ -f ${twrpimg} ]]; then
     mkdir -p $twrpdtout
-    uvx --from git+https://github.com/twrpdtgen/twrpdtgen@master twrpdtgen $twrpimg -o $twrpdtout
+    uvx --from git+https://github.com/Ecolify/twrpdtgen@master twrpdtgen $twrpimg -o $twrpdtout
     if [[ "$?" -eq 0 ]]; then
         [[ ! -e "${twrpdtout}/README.md" ]] && curl https://raw.githubusercontent.com/wiki/SebaUbuntu/TWRP-device-tree-generator/4.-Build-TWRP-from-source.md > ${twrpdtout}/README.md
     elif [[ -f "vendor_boot.img" ]]; then
-        uvx --from git+https://github.com/twrpdtgen/twrpdtgen@master twrpdtgen vendor_boot.img -o $twrpdtout
+        uvx --from git+https://github.com/Ecolify/twrpdtgen@master twrpdtgen vendor_boot.img -o $twrpdtout
         [[ "$?" -eq 0 && ! -e "${twrpdtout}/README.md" ]] && curl https://raw.githubusercontent.com/wiki/SebaUbuntu/TWRP-device-tree-generator/4.-Build-TWRP-from-source.md > ${twrpdtout}/README.md
     fi
 fi
@@ -1077,7 +1077,7 @@ find "$OUTDIR" -type f -printf '%P\n' | sort | grep -v ".git/" > "$OUTDIR"/all_f
 if [[ "$treble_support" = true ]]; then
         aospdtout="lineage-device-tree"
         mkdir -p $aospdtout
-        uvx --from git+https://github.com/EduardoA3677/aospdtgen@master aospdtgen $OUTDIR -o $aospdtout
+        uvx --from git+https://github.com/Ecolify/aospdtgen@master aospdtgen $OUTDIR -o $aospdtout
 
         # Remove all .git directories from aospdtout
         rm -rf $(find $aospdtout -type d -name ".git")
