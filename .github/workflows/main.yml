@@ -11,7 +11,7 @@ on:
 env:
   ROM_LINK: ${{ github.event.inputs.ROM_LINK }}
   TG_TOKEN: ${{ secrets.TG_TOKEN }}
-  GIT_ORG: "EduardoA3677"
+  GIT_ORG: "AndroidFW"
   CHAT_ID: ${{ secrets.CHAT_ID }}
   SSH_KEY: ${{ secrets.SSH_KEY }}
   GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
