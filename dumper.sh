@@ -812,9 +812,6 @@ if [[ -f "${OUTDIR}"/dtbo.img ]]; then
 	printf "dtbo extracted\n"
 fi
 
-# Show some info
-neofetch || uname -r
-
 # Extract Partitions
 for p in $PARTITIONS; do
 	if ! echo "${p}" | grep -q "boot\|recovery\|dtbo\|vendor_boot\|tz"; then
@@ -1059,11 +1056,11 @@ else
 fi
 if [[ -f ${twrpimg} ]]; then
     mkdir -p $twrpdtout
-    uvx --from git+https://github.com/EduardoA3677/twrpdtgen@master twrpdtgen $twrpimg -o $twrpdtout
+    uvx --from git+https://github.com/twrpdtgen/twrpdtgen@master twrpdtgen $twrpimg -o $twrpdtout
     if [[ "$?" -eq 0 ]]; then
         [[ ! -e "${twrpdtout}/README.md" ]] && curl https://raw.githubusercontent.com/wiki/SebaUbuntu/TWRP-device-tree-generator/4.-Build-TWRP-from-source.md > ${twrpdtout}/README.md
     elif [[ -f "vendor_boot.img" ]]; then
-        uvx --from git+https://github.com/EduardoA3677/twrpdtgen@master twrpdtgen vendor_boot.img -o $twrpdtout
+        uvx --from git+https://github.com/twrpdtgen/twrpdtgen@master twrpdtgen vendor_boot.img -o $twrpdtout
         [[ "$?" -eq 0 && ! -e "${twrpdtout}/README.md" ]] && curl https://raw.githubusercontent.com/wiki/SebaUbuntu/TWRP-device-tree-generator/4.-Build-TWRP-from-source.md > ${twrpdtout}/README.md
     fi
 fi
@@ -1076,7 +1073,6 @@ chown "$(whoami)" ./* -R
 chmod -R u+rwX ./*		#ensure final permissions
 find "$OUTDIR" -type f -printf '%P\n' | sort | grep -v ".git/" > "$OUTDIR"/all_files.txt
 
-if false; then
 # Generate LineageOS Trees
 if [[ "$treble_support" = true ]]; then
         aospdtout="lineage-device-tree"
