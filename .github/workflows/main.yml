@@ -30,6 +30,14 @@ jobs:
           remove-haskell: "true"
           remove-codeql: "true"
           
+      - name: Set Git Configs & Secrets
+        uses: rokibhasansagar/custom_workflows/git_config@main
+        with:
+          credential: "yes"
+          git_cookies: "no"
+        env:
+          PAT: ${{ secrets.GITLAB_TOKEN }}
+          
       - name: Dump Firmware
         run: |
           set -ex
